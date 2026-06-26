@@ -1,11 +1,12 @@
-import { IsEmail, IsNotEmpty, IsString, MinLength } from 'class-validator';
+import { IsNotEmpty, IsString, MinLength } from 'class-validator';
 
 export class LoginDto {
-  @IsEmail({}, { message: 'O e-mail informado é inválido.' })
-  @IsNotEmpty({ message: 'O e-mail é obrigatório para entrar na biblioteca.' })
-  email!: string;
+  @IsString()
+  @IsNotEmpty({ message: 'O codinome é obrigatório para entrar.' })
+  codinome!: string;
 
   @IsString()
   @IsNotEmpty({ message: 'A chave secreta é obrigatória.' })
+  @MinLength(6, { message: 'A chave secreta deve ter pelo menos 6 caracteres.' })
   chaveSecreta!: string;
 }
